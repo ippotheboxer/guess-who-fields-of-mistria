@@ -12,8 +12,8 @@ const App: React.FC = () => {
       <ThemeMenu />
       <Header />
       <FilterMenu />
-      <section className='p-12'>
-      <ul className='grid lg:grid-cols-5 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 bg-white/50 p-6'>
+      <section className='pt-4 lg:pt-8 px-8 pb-8'>
+      <ul className='grid xl:w-[1200px] lg:grid-cols-8 xl:grid-cols-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-flow-row auto-rows-min gap-2 bg-white/80 p-4'>
         {characters.map(character => 
         <Character 
           charName={character.name} 
