@@ -7,6 +7,8 @@ import FilterMenu from './components/FilterMenu';
 import ThemeMenu from './components/ThemeMenu';
 
 const App: React.FC = () => {
+  const [season, setSeason] = useState<"spring" | "summer" | "fall" | "winter">("spring");
+
   const [activeFilters, setActiveFilters] = useState({
     gender: "",
     romanceable: null as boolean | null,
@@ -28,7 +30,7 @@ const App: React.FC = () => {
 
   return (
     <main className='flex flex-col items-center bg-[url(assets/images/background/spring_bg.png)] bg-cover min-h-screen min-w-full'>
-      <ThemeMenu />
+      <ThemeMenu currentSeason={season} onSeasonChange={setSeason} />
       <Header />
       <FilterMenu 
         onGenderFilter={handleGenderFilter}
@@ -41,11 +43,17 @@ const App: React.FC = () => {
           (activeFilters.gender !== "" && character.gender === activeFilters.gender) ||
           (activeFilters.romanceable !== null && character.romanceable === activeFilters.romanceable);
 
+          const seasonalKey = `${season}_filename`;
+  const filename =
+    season !== "spring" && character[seasonalKey as keyof typeof character]
+      ? character[seasonalKey as keyof typeof character]
+      : character.default_filename;
+
           return (
             <Character 
               key={character.name}
               charName={character.name}
-              imgSrc={`../assets/images/characters/${character.name.toLowerCase()}/${character.default_filename}`}
+              imgSrc={`../assets/images/characters/${character.name.toLowerCase()}/${filename}`}
               isFiltered={shouldBeFiltered}
             />
           );
