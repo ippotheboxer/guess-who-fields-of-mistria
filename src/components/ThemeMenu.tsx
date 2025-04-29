@@ -1,5 +1,5 @@
-import React from 'react';
-import ThemeButton from './ThemeButton';
+import React from "react";
+import ThemeButton from "./ThemeButton";
 // Images
 import springIcon from "../assets/images/spring_icon.png";
 import summerIcon from "../assets/images/summer_icon.png";
@@ -11,17 +11,46 @@ interface ThemeMenuProps {
   currentSeason: string;
 }
 
-const ThemeMenu: React.FC<ThemeMenuProps> = ({ onSeasonChange, currentSeason }) => {
-  const seasons = ["spring", "summer", "fall", "winter"] as const;
-  
+const ThemeMenu: React.FC<ThemeMenuProps> = ({
+  onSeasonChange,
+  currentSeason,
+}) => {
   return (
-    <div className='flex flex-row self-end pr-4 pt-4'>
-        <ThemeButton imgSrc={springIcon} alt='springIcon' onClick={() => onSeasonChange('spring')}/>
-        <ThemeButton imgSrc={summerIcon} alt='springIcon' onClick={() => onSeasonChange('summer')}/>
-        <ThemeButton imgSrc={fallIcon} alt='springIcon' onClick={() => onSeasonChange('fall')}/>
-        <ThemeButton imgSrc={winterIcon} alt='springIcon' onClick={() => onSeasonChange('winter')}/>
+    <div className="flex flex-row self-end pr-4 pt-4">
+      <ThemeButton
+        imgSrc={springIcon}
+        alt="springIcon"
+        bgElement="rgb(255,209,220)"
+        onClick={() => onSeasonChange("spring")}
+        season="spring"
+        currentSeason={currentSeason}
+      />
+      <ThemeButton
+        imgSrc={summerIcon}
+        alt="springIcon"
+        bgElement="rgb(253,253,150)"
+        onClick={() => onSeasonChange("summer")}
+        season="summer"
+        currentSeason={currentSeason}
+      />
+      <ThemeButton
+        imgSrc={fallIcon}
+        alt="springIcon"
+        bgElement="rgb(255,179,71)"
+        onClick={() => onSeasonChange("fall")}
+        season="fall"
+        currentSeason={currentSeason}
+      />
+      <ThemeButton
+        imgSrc={winterIcon}
+        alt="springIcon"
+        bgElement="rgb(167, 199, 231)"
+        onClick={() => onSeasonChange("winter")}
+        season="winter"
+        currentSeason={currentSeason}
+      />
     </div>
   );
-}
+};
 
 export default ThemeMenu;
