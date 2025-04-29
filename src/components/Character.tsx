@@ -3,15 +3,20 @@ import React, { useState } from "react";
 interface Props {
   imgSrc: string;
   charName: string;
+  isFiltered: boolean;
 }
 
-const Character: React.FC<Props> = ({ imgSrc, charName }) => {
+const Character: React.FC<Props> = ({ imgSrc, charName, isFiltered }) => {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <button
       onClick={() => setIsClicked((prevState) => !prevState)}
       key={charName}
-      className={`charCard ${!isClicked ? 'hover:bg-green-300/60 hover:cursor-pointer' : 'opacity-20'}`}
+      className={`charCard ${
+        !isClicked ? "hover:bg-green-300/60 hover:cursor-pointer" : "opacity-20"
+      } ${isFiltered ? "bg-red-300/60" : ""}  ${
+        isClicked && isFiltered ? "bg-white/50" : ""
+      }`}
     >
       <img
         src={imgSrc}
