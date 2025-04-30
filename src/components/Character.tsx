@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   imgSrc: string;
@@ -6,9 +6,10 @@ interface Props {
   isFiltered: boolean;
   isChoosing: boolean;
   onChoose: () => void;
+  resetSignal: number;
 }
 
-const Character: React.FC<Props> = ({ imgSrc, charName, isFiltered, isChoosing, onChoose, }) => {
+const Character: React.FC<Props> = ({ imgSrc, charName, isFiltered, isChoosing, onChoose, resetSignal }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -18,6 +19,11 @@ const Character: React.FC<Props> = ({ imgSrc, charName, isFiltered, isChoosing, 
       setIsClicked((prev) => !prev);
     }
   }
+
+  useEffect(() => {
+    setIsClicked(false);
+  }, [resetSignal]);
+
   return (
     <button
       onClick={handleClick}

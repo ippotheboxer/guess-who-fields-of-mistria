@@ -33,7 +33,18 @@ const App: React.FC = () => {
     }));
   };
 
+  const onReset = () => {
+    setChosenCharacter(null);
+          setIsChoosing(false);
+          setResetSignal(prev => prev + 1);
+          setActiveFilters({
+            gender: "",
+            romanceable: null,
+          });
+  }
+
   const selectedCharacter = characters.find(c => c.name === chosenCharacter);
+  const [resetSignal, setResetSignal] = useState(0);
 
   return (
     <main className='flex flex-col items-center bg-[url(assets/images/background/spring_bg.png)] bg-cover min-h-screen min-w-full'>
@@ -42,7 +53,9 @@ const App: React.FC = () => {
       <FilterMenu
         onGenderFilter={handleGenderFilter}
         onRomanceableFilter={handleRomanceableFilter}
+        onReset={onReset}
       />
+
       <section className='pt-4 lg:pt-8 px-10 pb-8 lg:px-12 xl:px-16'>
         <ul className='grid lg:grid-cols-8 xl:grid-cols-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 grid-flow-row auto-rows-min gap-2 bg-[#EFDFE1]/80 p-4 border-[#C27D64] border-3 rounded-sm'>
           {characters.map(character => {
@@ -58,6 +71,7 @@ const App: React.FC = () => {
 
             return (
               <Character
+                resetSignal={resetSignal}
                 key={character.name}
                 charName={character.name}
                 imgSrc={`../assets/images/characters/${character.name.toLowerCase()}/${filename}`}
@@ -77,23 +91,23 @@ const App: React.FC = () => {
       </section>
       <section className='pb-8 flex flex-col items-center justify-center'>
         {selectedCharacter && <ChosenCharacter character={selectedCharacter} season={season} />}
-          <div className='flex flex-col md:flex-row items-center pt-4'>
-        <button
-          onClick={() => setIsChoosing(true)}
-          className='silkscreen-regular px-4 py-2 bg-green-300 text-white rounded-lg hover:bg-white hover:text-green-300 transition ease-in-out duration-150 hover:cursor-pointer'
-        >
-          {!isChoosing ? <p>Choose your Character!</p> : <p>Choosing...</p>}
-        </button>
-        <button
-          onClick={() => {
-            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-            setChosenCharacter(randomCharacter.name);
-            setIsChoosing(false);
-          }}
-          className='p-2 bg-green-100 rounded-lg hover:cursor-pointer hover:bg-white transition ease-in-out duration-150 mt-2 md:mt-0 md:ml-4'
-        >
-          <img src={diceImg} alt='pixelated dice' className='w-6 h-6'/>
-        </button>
+        <div className='flex flex-col md:flex-row items-center pt-4'>
+          <button
+            onClick={() => setIsChoosing(true)}
+            className='silkscreen-regular px-4 py-2 bg-green-300 text-white rounded-lg hover:bg-white hover:text-green-300 transition ease-in-out duration-150 hover:cursor-pointer'
+          >
+            {!isChoosing ? <p>Choose your Character!</p> : <p>Choosing...</p>}
+          </button>
+          <button
+            onClick={() => {
+              const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+              setChosenCharacter(randomCharacter.name);
+              setIsChoosing(false);
+            }}
+            className='p-2 bg-green-100 rounded-lg hover:cursor-pointer hover:bg-white transition ease-in-out duration-150 mt-2 md:mt-0 md:ml-4'
+          >
+            <img src={diceImg} alt='pixelated dice' className='w-6 h-6' />
+          </button>
         </div>
 
 
