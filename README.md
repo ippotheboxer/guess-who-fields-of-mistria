@@ -1,5 +1,7 @@
 # Fields Of Mistria inspired 'Guess Who?' game!
 
+[The game](https://ippotheboxer.github.io/guess-who-fields-of-mistria/)
+
 ![Screenshot 2025-04-30 130335](https://github.com/user-attachments/assets/ee390930-a655-4f40-aace-96185e398592)
 ![Screenshot 2025-04-30 130350](https://github.com/user-attachments/assets/1bf6cabd-1d7a-4131-924b-969a0a4fe863)
 
