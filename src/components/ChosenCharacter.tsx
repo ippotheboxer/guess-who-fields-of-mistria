@@ -8,12 +8,12 @@ interface CharacterData {
 
 interface Props {
   character: CharacterData;
-  season: "spring" | "summer" | "fall" | "winter";
+  season: "spring" | "summer" | "fall" | "winter" | "beach";
 }
 
 const ChosenCharacter: React.FC<Props> = ({ character, season }) => {
   const filename = character[`${season}_filename`] || character.default_filename;
-  const imgSrc = `../assets/images/characters/${character.name.toLowerCase()}/${filename}`;
+  const imgSrc = `assets/images/characters/${character.name.toLowerCase()}/${filename}`;
 
   return (
     <div className="silkscreen-regular flex flex-col items-center mt-4 p-4 bg-white/90 rounded-md shadow-md ring-2 ring-[#C27D64]">

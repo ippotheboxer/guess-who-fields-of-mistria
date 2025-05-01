@@ -5,9 +5,10 @@ import springIcon from "../assets/images/spring_icon.png";
 import summerIcon from "../assets/images/summer_icon.png";
 import fallIcon from "../assets/images/fall_icon.png";
 import winterIcon from "../assets/images/winter_icon.png";
+import beachIcon from "../assets/images/Pink_scallop_shell.png";
 
 interface ThemeMenuProps {
-  onSeasonChange: (season: "spring" | "summer" | "fall" | "winter") => void;
+  onSeasonChange: (season: "spring" | "summer" | "fall" | "winter" | "beach") => void;
   currentSeason: string;
 }
 
@@ -20,7 +21,7 @@ const ThemeMenu: React.FC<ThemeMenuProps> = ({
       <ThemeButton
         imgSrc={springIcon}
         alt="springIcon"
-        bgElement="rgb(255,209,220)"
+        bgElement="#7CF3B6"
         onClick={() => onSeasonChange("spring")}
         season="spring"
         currentSeason={currentSeason}
@@ -31,6 +32,14 @@ const ThemeMenu: React.FC<ThemeMenuProps> = ({
         bgElement="rgb(253,253,150)"
         onClick={() => onSeasonChange("summer")}
         season="summer"
+        currentSeason={currentSeason}
+      />
+      <ThemeButton
+        imgSrc={beachIcon}
+        alt="beachIcon"
+        bgElement="#FFB4AE"
+        onClick={() => onSeasonChange("beach")}
+        season="beach"
         currentSeason={currentSeason}
       />
       <ThemeButton

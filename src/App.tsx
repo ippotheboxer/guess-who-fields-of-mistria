@@ -8,9 +8,10 @@ import ThemeMenu from './components/ThemeMenu';
 import ChosenCharacter from './components/ChosenCharacter';
 
 import diceImg from "./assets/images/dice.png";
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
-  const [season, setSeason] = useState<"spring" | "summer" | "fall" | "winter">("spring");
+  const [season, setSeason] = useState<"spring" | "summer" | "fall" | "winter" | "beach">("spring");
   const [chosenCharacter, setChosenCharacter] = useState<string | null>(null);
   const [isChoosing, setIsChoosing] = useState(false);
 
@@ -35,19 +36,19 @@ const App: React.FC = () => {
 
   const onReset = () => {
     setChosenCharacter(null);
-          setIsChoosing(false);
-          setResetSignal(prev => prev + 1);
-          setActiveFilters({
-            gender: "",
-            romanceable: null,
-          });
+    setIsChoosing(false);
+    setResetSignal(prev => prev + 1);
+    setActiveFilters({
+      gender: "",
+      romanceable: null,
+    });
   }
 
   const selectedCharacter = characters.find(c => c.name === chosenCharacter);
   const [resetSignal, setResetSignal] = useState(0);
 
   return (
-    <main className='flex flex-col items-center bg-[url(assets/images/background/spring_bg.png)] bg-cover min-h-screen min-w-full'>
+    <main className='flex flex-col items-center bg-[url(assets/background/spring_bg.png)] bg-cover min-h-screen min-w-full'>
       <ThemeMenu currentSeason={season} onSeasonChange={setSeason} />
       <Header />
       <FilterMenu
@@ -64,17 +65,20 @@ const App: React.FC = () => {
               (activeFilters.romanceable !== null && character.romanceable === activeFilters.romanceable);
 
             const seasonalKey = `${season}_filename`;
+
             const filename =
-              season !== "spring" && character[seasonalKey as keyof typeof character]
-                ? character[seasonalKey as keyof typeof character]
-                : character.default_filename;
+              season === "beach"
+                ? character["beach_filename"] || character["summer_filename"] || character.default_filename
+                : (season !== "spring" && character[seasonalKey as keyof typeof character])
+                  ? character[seasonalKey as keyof typeof character]
+                  : character.default_filename;
 
             return (
               <Character
                 resetSignal={resetSignal}
                 key={character.name}
                 charName={character.name}
-                imgSrc={`../assets/images/characters/${character.name.toLowerCase()}/${filename}`}
+                imgSrc={`assets/images/characters/${character.name.toLowerCase()}/${filename}`}
                 isFiltered={shouldBeFiltered}
                 isChoosing={isChoosing}
                 onChoose={() => {
@@ -112,6 +116,7 @@ const App: React.FC = () => {
 
 
       </section>
+      <Footer />
     </main>
   );
 }
