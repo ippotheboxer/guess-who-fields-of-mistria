@@ -12,7 +12,11 @@ interface Props {
 }
 
 const ChosenCharacter: React.FC<Props> = ({ character, season }) => {
-  const filename = character[`${season}_filename`] || character.default_filename;
+  const filename =
+    season === "beach"
+      ? character["beach_filename"] || character["summer_filename"] || character.default_filename
+      : character[`${season}_filename`] || character.default_filename;
+
   const imgSrc = `assets/images/characters/${character.name.toLowerCase()}/${filename}`;
 
   return (
