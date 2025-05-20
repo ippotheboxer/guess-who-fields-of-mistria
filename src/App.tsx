@@ -48,7 +48,13 @@ const App: React.FC = () => {
   const [resetSignal, setResetSignal] = useState(0);
 
   return (
-    <main className='flex flex-col items-center bg-[url(assets/background/spring_bg.png)] bg-cover min-h-screen min-w-full'>
+    <main
+      className='flex flex-col items-center bg-cover min-h-screen min-w-full'
+      style={{
+        backgroundImage: `url(/assets/background/${season}_bg.jpg)`, backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center"
+      }}>
       <ThemeMenu currentSeason={season} onSeasonChange={setSeason} />
       <Header />
       <FilterMenu
