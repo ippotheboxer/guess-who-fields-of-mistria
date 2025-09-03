@@ -20,7 +20,7 @@ There are some filters to help with the game:
 
 There are also some seasonal filters at the top - spring, summer, fall and winter. This changes the seasonal outfits.
 
-⭐ Accurate to current version (created April 2025) ⭐
+⭐ Accurate to current version (updated September 2025) ⭐
 
 ## Data
 
